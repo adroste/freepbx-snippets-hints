@@ -19,3 +19,24 @@ Reported here: https://issues.freepbx.org/browse/FREEPBX-23229
 The bulk importer creates empty numbers in the db, hence breaking the contact entry.
 
 Snippet shall be applied to line 3238 (Contactmanager Version 16.0.17.3).
+
+## Update FreePBX Framework 16 on Asterisk 19
+
+On Error:
+```
+Unsupported Version of 19.0.0
+Supported Asterisk versions: 13, 14, 15, 16, 17, 18
+```
+
+Patch file:
+```
+vim.tiny /var/www/html/admin/modules/framework/install.php
+```
+from:
+```
+if (version_compare($astversion, "13", "lt") || version_compare($astversion, "19", "ge"))
+```
+to:
+```
+if (version_compare($astversion, "13", "lt") || version_compare($astversion, "20", "ge"))
+```
