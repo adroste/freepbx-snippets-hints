@@ -12,6 +12,19 @@ See: https://community.freepbx.org/t/solved-ring-group-with-voicemail-and-busy-o
 See: https://community.freepbx.org/t/strip-off-country-and-area-code-from-incoming-caller-id-name/37048/6
 
 
+## Restart system with feature code
+
+In `extensions_custom.conf`:
+```
+[restart-system]
+exten => s,1,System(/bin/sh -c "(/usr/bin/sleep 3 && sudo /sbin/reboot -f) &")
+same => n,Hangup()
+```
+
+* Create Admin -> Custom Destination with with destination `restart-system,s,1`
+* Create Apps -> Misc Apps with custom feature code and target custom-destination
+
+
 ## Fix contactmanager bulk import empty numbers
 
 Reported here: https://issues.freepbx.org/browse/FREEPBX-23229
