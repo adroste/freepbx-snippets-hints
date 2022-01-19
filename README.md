@@ -14,6 +14,12 @@ See: https://community.freepbx.org/t/strip-off-country-and-area-code-from-incomi
 
 ## Restart system with feature code
 
+Make sure that the asterisk user can use the reboot command.
+Check that the following line is in `/etc/sudoers`:
+```
+asterisk ALL = NOPASSWD: /sbin/reboot
+```
+
 In `extensions_custom.conf`:
 ```
 [restart-system]
@@ -23,6 +29,7 @@ same => n,Hangup()
 
 * Create Admin -> Custom Destination with with destination `restart-system,s,1`
 * Create Apps -> Misc Apps with custom feature code and target custom-destination
+
 
 
 ## Fix contactmanager bulk import empty numbers
